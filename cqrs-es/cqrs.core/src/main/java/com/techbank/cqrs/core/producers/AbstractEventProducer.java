@@ -3,17 +3,16 @@ package com.techbank.cqrs.core.producers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.techbank.cqrs.core.events.BaseEvent;
-import com.techbank.cqrs.core.exceptions.CqrsJSonProcessingException;
+import com.techbank.cqrs.core.exceptions.JsonException;
 import org.springframework.kafka.core.KafkaTemplate;
 
 public class AbstractEventProducer implements EventProducer {
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
 
-    protected AbstractEventProducer(KafkaTemplate<String, String> kafkaTemplate,
-                                    ObjectMapper objectMapper) {
+    protected AbstractEventProducer(KafkaTemplate<String, String> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
-        this.objectMapper = objectMapper;
+        this.objectMapper = new ObjectMapper();
     }
 
     @Override
@@ -22,7 +21,7 @@ public class AbstractEventProducer implements EventProducer {
         try {
             strEvent = objectMapper.writeValueAsString(event);
         } catch (JsonProcessingException e) {
-            throw new CqrsJSonProcessingException("An error occurred during formatting", e.getCause());
+            throw new JsonException("An error occurred during formatting", e.getCause());
         }
         kafkaTemplate.send(topic, strEvent);
     }
