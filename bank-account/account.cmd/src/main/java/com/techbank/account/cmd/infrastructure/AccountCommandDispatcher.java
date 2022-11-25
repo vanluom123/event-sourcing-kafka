@@ -4,7 +4,6 @@ import com.techbank.account.cmd.common.Messages;
 import com.techbank.account.cmd.common.exception.CommandException;
 import com.techbank.cqrs.core.commands.BaseCommand;
 import com.techbank.cqrs.core.commands.CommandHandlerMethod;
-import com.techbank.cqrs.core.commands.ICommandHandlerMethod;
 import com.techbank.cqrs.core.infrastructure.CommandDispatcher;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,7 @@ import java.util.Map;
 
 @Service
 public class AccountCommandDispatcher implements CommandDispatcher {
-    private final Map<Class<? extends BaseCommand>, List<ICommandHandlerMethod>> routes = new HashMap<>();
+    private final Map<Class<? extends BaseCommand>, List<Object>> routes = new HashMap<>();
 
     @Override
     public <T extends BaseCommand> void registerHandler(Class<T> type, CommandHandlerMethod<T> handler) {
