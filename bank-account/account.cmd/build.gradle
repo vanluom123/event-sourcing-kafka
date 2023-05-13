@@ -17,12 +17,13 @@ repositories {
 }
 
 dependencies {
-    api 'org.springframework.boot:spring-boot-starter-data-mongodb:2.4.5'
-    api 'org.springframework.boot:spring-boot-starter-web:2.4.5'
-    api 'org.springframework.kafka:spring-kafka:2.6.7'
-    api 'com.techbank:cqrs.core:1.0.0'
-    api 'com.techbank:account.common:1.0.0'
-    api 'org.projectlombok:lombok:1.18.20'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:2.4.5'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.4.5'
+    implementation 'org.springframework.kafka:spring-kafka:2.6.7'
+    implementation 'com.techbank:cqrs.core:1.0.0'
+    implementation 'com.techbank:account.common:1.0.0'
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.4.5'
     testImplementation 'org.springframework.kafka:spring-kafka-test:2.6.7'
 }
@@ -30,7 +31,7 @@ dependencies {
 group = 'com.techbank'
 version = '1.0.0'
 description = 'account.cmd'
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.sourceCompatibility = JavaVersion.VERSION_11
 
 publishing {
     publications {
@@ -40,10 +41,10 @@ publishing {
     }
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
-tasks.withType(Javadoc) {
+tasks.withType(Javadoc).configureEach {
     options.encoding = 'UTF-8'
 }

@@ -2,8 +2,11 @@ package com.techbank.account.cmd.api.dto;
 
 import com.techbank.account.common.dto.BaseResponse;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class OpenAccountResponse extends BaseResponse {
     private String id;
 

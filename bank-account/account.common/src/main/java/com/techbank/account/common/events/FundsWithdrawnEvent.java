@@ -2,14 +2,17 @@ package com.techbank.account.common.events;
 
 import com.techbank.cqrs.core.events.BaseEvent;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
 public class FundsWithdrawnEvent extends BaseEvent {
-    private double amount;
+  private double amount;
 }

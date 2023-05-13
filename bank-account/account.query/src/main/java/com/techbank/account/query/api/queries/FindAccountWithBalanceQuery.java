@@ -4,8 +4,11 @@ import com.techbank.account.query.api.dto.EqualityType;
 import com.techbank.cqrs.core.queries.BaseQuery;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 public class FindAccountWithBalanceQuery extends BaseQuery {
     private EqualityType equalityType;
